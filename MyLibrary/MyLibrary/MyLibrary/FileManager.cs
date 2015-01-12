@@ -225,13 +225,31 @@ namespace MyLibrary
 
 
 
-        public List<Diary> Sorting(List<Diary> par)
+        public List<Diary> Sorting(List<Diary> par) // сделать не через лямбду, а через цикл
         {
+         //   par.Sort((a, b) => a.Id.CompareTo(b.Id));
+            
 
-            par.Sort((a, b) => a.Id.CompareTo(b.Id));
+            int size = par.Capacity;
+            for (int i = 1; i < size-1; i++)
+            {
+                for (int j = 0; j < (size - i-1); j++)
+                {
+                    if (par[j].Id > par[j + 1].Id)
+                    {
+                        int temp = par[j].Id;
+                        par[j].Id = par[j + 1].Id;
+                        par[j + 1].Id = temp;
+                    }
+                }
+            }
 
             return par;
+
+
+
         }
+
         public List<Diary> CreateArr(int length)
         {
            par = new List<Diary>();
@@ -261,6 +279,7 @@ namespace MyLibrary
 
                }
            }
+           Sorting(par);
 
             return par;
 
