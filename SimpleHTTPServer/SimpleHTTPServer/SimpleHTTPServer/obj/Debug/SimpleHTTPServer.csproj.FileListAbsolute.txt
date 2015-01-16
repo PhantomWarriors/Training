@@ -1,0 +1,6 @@
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\bin\Debug\SimpleHTTPServer.exe.config
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\bin\Debug\SimpleHTTPServer.exe
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\bin\Debug\SimpleHTTPServer.pdb
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\obj\Debug\SimpleHTTPServer.csprojResolveAssemblyReference.cache
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\obj\Debug\SimpleHTTPServer.exe
+D:\Document\Programs\Net\SimpleHTTPServer\SimpleHTTPServer\SimpleHTTPServer\obj\Debug\SimpleHTTPServer.pdb
