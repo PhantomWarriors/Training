@@ -22,6 +22,19 @@ namespace MyList
             listt.Add(13);
             listt.Reverse();
             test.Add(15);
+
+
+
+            newMList list = new newMList();
+
+            list.Add(12);
+            list.Add(13);
+            list.Add(9);
+            list.Add(5);
+            Console.WriteLine(list[3]);
+            Console.WriteLine(list[2]);
+            Console.WriteLine(list[1]);
+            Console.WriteLine(list[0]);
         }
     }
 }

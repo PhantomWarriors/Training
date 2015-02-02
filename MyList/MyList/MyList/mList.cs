@@ -9,7 +9,9 @@ namespace MyList
   public  class mList
     {
        private int[] list = new int[50];
-       private int i = 0;
+       private int count = 0;
+       private int iStart = 0;
+       private int iEnd = 0;
 
         public int this[int index]
         {
@@ -25,29 +27,45 @@ namespace MyList
         }
 
         public void Add (int value)
-        {        
-            if (list.Length==i)
+        {
+            if (list.Length == count)
             {
                 Array.Resize(ref list,list.Length+1);
             }
-            list[i] = value;
-            i++;
+            list[count] = value;
+
+            if (count == 0)
+            { 
+                iStart = value;
+            }
+            iEnd = value;
+            count++;
         }
 
 
-        public void Remove (int value)
+      public void Remove (int value)
         {
-            int[] newList = new int[50];
+            int[] newList = new int[list.Length];
             int j = 0;
+            int del = 0;
             for (int i=0; i<list.Length;i++)
             {
                 if (list[i] == value)
+                {
                     list[i] = 0;
+                    del = i;
+                    break;
+                }
+            }
+
+            if (del == count)
+            {
+                iEnd = list[del - 1];
             }
 
             for (int i = 0; i < list.Length; i++)
             {
-                if (list[i] != 0)
+                if (i != del)
                 {
                     newList[j] = list[i];
                     j++;
@@ -58,10 +76,17 @@ namespace MyList
             {
                 list[i] = newList[i];
             }
+
+          if (iStart==value)
+          {
+              iStart = list[0];
+          }
+
+          count = count - 1;
         }
 
 
-       public void Sort ()
+      public void Sort ()
         {
             for (int i = 0; i < list.Length; i++)
             {
@@ -75,32 +100,25 @@ namespace MyList
                     }
                 }
             }
-
         }
 
-        public void Clear ()
+      public void Clear ()
        {
            for (int i = 0; i < list.Length; i++)
            {
                list[i] = 0;
            }
+           count = 0;
+           iEnd = 0;
+           iStart = 0;
        }
 
-
-        public int Count ()
+      public int Count ()
         {
-            int k = 0;
-            for (int i = 0; i < list.Length; i++)
-            {
-                if (list[i] != 0)
-                {
-                     k = k+1;
-                }
-            }
-            return k;
+            return count;
         }
 
-        public void Reverse()
+      public void Reverse()
         {
             for (int i = 0; i < list.Length; i++)
             {
@@ -114,8 +132,117 @@ namespace MyList
                     }
                 }
             }
-
         }
+
+      public void Insert(int index, int value)
+        {
+            if (list.Length == count)
+            {
+                Array.Resize(ref list, list.Length + 1);
+            }
+
+            int[] newList = new int[list.Length];
+            int j = 0;
+            for (int i = 0; i < list.Length; i++)
+            {
+                if (i != index)
+                {
+                    newList[i] = list[j];
+                    j++;
+                }
+                else
+                {
+                    newList[i] = value;
+                    count++;
+                }
+            }
+
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i] = newList[i];
+            }
+          if (index==0)
+          {
+              iStart = value;
+          }
+
+          if (index==count)
+          {
+              iEnd = value;
+          }
+        }
+
+
+      public void Delete (int index)
+      {
+          int[] newList = new int[list.Length];
+          int j = 0;
+
+          if (index == 0)
+          {
+              iStart = list[index + 1];
+          }
+
+          if (index == count)
+          {
+              iEnd = list[index - 1];
+          }
+
+
+          for (int i = 0; i < list.Length; i++)
+          {
+              if (i != index)
+              {
+                  newList[j] = list[i];
+                  j++;
+              }
+          }
+
+          for (int i = 0; i < list.Length; i++)
+          {
+              list[i] = newList[i];
+          }
+
+          count = count - 1;
+      }
+
+
+      public void AddToStart (int value)
+      {
+          iStart = value;
+          count++;
+          if (list.Length == count)
+          {
+              Array.Resize(ref list, list.Length + 1);
+          }
+          int[] newList = new int[list.Length];
+          newList[0] = value;
+          for (int i = 0; i < list.Length; i++)
+          {
+                  newList[i+1] = list[i];
+          }
+
+          for (int i = 0; i < list.Length; i++)
+          {
+              list[i] = newList[i];
+          }
+      }
+
+
+      public void DelFirst ()
+      {
+          count = count - 1;
+          iStart = list[1];
+          int[] newList = new int[list.Length];
+          for (int i = 1; i < list.Length; i++)
+          {
+              newList[i-1] = list[i];
+          }
+          for (int i = 0; i < list.Length; i++)
+          {
+              list[i] = newList[i];
+          }
+      }
 
     }
 }

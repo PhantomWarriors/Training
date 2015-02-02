@@ -100,12 +100,8 @@ namespace MyListUniTest
 
 
              lst2.Reverse();
-             //NUnit.Framework.CollectionAssert.AreEqual(lst, lst2);
-
-             for (int i = 0; i < 5; i++)
-             {
-                 NUnit.Framework.Assert.AreEqual(lst[i], lst2[i]);
-             }
+             NUnit.Framework.Assert.That(lst, NUnit.Framework.Is.EquivalentTo(lst2));
+             NUnit.Framework.CollectionAssert.AreEqual(lst, lst2);
          }
 
 
