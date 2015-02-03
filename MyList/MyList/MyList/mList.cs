@@ -13,7 +13,7 @@ namespace MyList
        private int iStart = 0;
        private int iEnd = 0;
 
-        public int this[int index]
+      public int this[int index]
         {
             get
              {
@@ -26,7 +26,7 @@ namespace MyList
              }
         }
 
-        public void Add (int value)
+      public void Add (int value)
         {
             if (list.Length == count)
             {
@@ -41,7 +41,6 @@ namespace MyList
             iEnd = value;
             count++;
         }
-
 
       public void Remove (int value)
         {
@@ -84,96 +83,21 @@ namespace MyList
 
           count = count - 1;
         }
-
-
-      public void Sort ()
-        {
-            for (int i = 0; i < list.Length; i++)
-            {
-                for (int j = i + 1; j < list.Length; j++)
-                {
-                    if (list[j] < list[i])
-                    {
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
-                    }
-                }
-            }
-        }
-
-      public void Clear ()
-       {
-           for (int i = 0; i < list.Length; i++)
-           {
-               list[i] = 0;
-           }
-           count = 0;
-           iEnd = 0;
-           iStart = 0;
-       }
-
-      public int Count ()
-        {
-            return count;
-        }
-
-      public void Reverse()
-        {
-            for (int i = 0; i < list.Length; i++)
-            {
-                for (int j = i + 1; j < list.Length; j++)
-                {
-                    if (list[j] > list[i])
-                    {
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
-                    }
-                }
-            }
-        }
-
-      public void Insert(int index, int value)
-        {
-            if (list.Length == count)
-            {
-                Array.Resize(ref list, list.Length + 1);
-            }
-
-            int[] newList = new int[list.Length];
-            int j = 0;
-            for (int i = 0; i < list.Length; i++)
-            {
-                if (i != index)
-                {
-                    newList[i] = list[j];
-                    j++;
-                }
-                else
-                {
-                    newList[i] = value;
-                    count++;
-                }
-            }
-
-            for (int i = 0; i < list.Length; i++)
-            {
-                list[i] = newList[i];
-            }
-          if (index==0)
+      public void Clear()
+      {
+          for (int i = 0; i < list.Length; i++)
           {
-              iStart = value;
+              list[i] = 0;
           }
-
-          if (index==count)
-          {
-              iEnd = value;
-          }
-        }
-
-
-      public void Delete (int index)
+          count = 0;
+          iEnd = 0;
+          iStart = 0;
+      }
+      public int Count()
+      {
+          return count;
+      }
+      public void Delete(int index)
       {
           int[] newList = new int[list.Length];
           int j = 0;
@@ -205,9 +129,7 @@ namespace MyList
 
           count = count - 1;
       }
-
-
-      public void AddToStart (int value)
+      public void AddToStart(int value)
       {
           iStart = value;
           count++;
@@ -217,9 +139,10 @@ namespace MyList
           }
           int[] newList = new int[list.Length];
           newList[0] = value;
-          for (int i = 0; i < list.Length; i++)
+          for (int i = 1; i < list.Length; i++)
           {
-                  newList[i+1] = list[i];
+              
+              newList[i] = list[i];
           }
 
           for (int i = 0; i < list.Length; i++)
@@ -227,6 +150,80 @@ namespace MyList
               list[i] = newList[i];
           }
       }
+      public void Insert(int index, int value)
+      {
+          if (list.Length == count)
+          {
+              Array.Resize(ref list, list.Length + 1);
+          }
+
+          int[] newList = new int[list.Length];
+          int j = 0;
+          for (int i = 0; i < list.Length; i++)
+          {
+              if (i != index)
+              {
+                  newList[i] = list[j];
+                  j++;
+              }
+              else
+              {
+                  newList[i] = value;
+                  count++;
+              }
+          }
+
+          for (int i = 0; i < list.Length; i++)
+          {
+              list[i] = newList[i];
+          }
+          if (index == 0)
+          {
+              iStart = value;
+          }
+
+          if (index == count)
+          {
+              iEnd = value;
+          }
+      }
+
+
+
+
+      public void Sort ()
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                for (int j = i + 1; j < list.Length; j++)
+                {
+                    if (list[j] < list[i])
+                    {
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+            }
+        }
+
+      public void Reverse()
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                for (int j = i + 1; j < list.Length; j++)
+                {
+                    if (list[j] > list[i])
+                    {
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+            }
+        }
+
+
 
 
       public void DelFirst ()

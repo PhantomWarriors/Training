@@ -47,7 +47,6 @@
     <Compile Include="iMList.cs" />
     <Compile Include="mList.cs" />
     <Compile Include="newMList.cs" />
-    <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
