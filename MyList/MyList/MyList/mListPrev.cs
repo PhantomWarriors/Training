@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-   public class newMList
+   public class mListPrev
     {
         private int size=0;
-        private newMList first;
-        private newMList last;
+        private mListPrev first;
+        private mListPrev last;
         private int data;
-        private newMList next;
-        private newMList previous;
+        private mListPrev next;
+        private mListPrev previous;
 
-        public newMList First
+        public mListPrev First
         {
             get { return first; }
             set { first = value; }
         }
-        public newMList Last
+        public mListPrev Last
         {
             get { return last; }
             set { last = value; }
@@ -30,29 +30,29 @@ namespace MyList
             get { return this.data; }
             set { this.data = value; }
         }
-        public newMList Next
+        public mListPrev Next
         {
             get { return this.next; }
             set { this.next = value; }
         }
-        public newMList Previous
+        public mListPrev Previous
         {
             get { return this.previous; }
             set { this.previous = value; }
         }
-        public newMList(int value)
+        public mListPrev(int value)
         {
             data = value;
             next = null;
             previous = null;
         }
-        public newMList(int value, newMList res)
+        public mListPrev(int value, mListPrev res)
         {
             data = value;
             next = res;
             previous = null;
         }
-        public newMList()
+        public mListPrev()
         {
             data = 0;
             next = null;
@@ -74,7 +74,7 @@ namespace MyList
         public int GetValue (int pos)
         {
             int counter = 0;
-            newMList position = first;
+            mListPrev position = first;
             int result = 0;
             while (position!=null)
             {
@@ -91,7 +91,7 @@ namespace MyList
         public void SetValue(int pos, int val)
         {
             int counter = 0;
-            newMList position = first;
+            mListPrev position = first;
             while (position != null)
             {
                 if (counter == pos)
@@ -105,7 +105,7 @@ namespace MyList
         }
         public void Add(int value)
         {
-            newMList current = new newMList(value);
+            mListPrev current = new mListPrev(value);
             if (first == null)
             {
                 first = current;
@@ -123,7 +123,7 @@ namespace MyList
         public int Count()
         {
             int counter = 0;
-            newMList position = first;
+            mListPrev position = first;
             while (position!=null)
             {
                 counter++;
@@ -134,7 +134,7 @@ namespace MyList
         public void Remove(int value)
         {
             var temp = first;
-            newMList current = null;
+            mListPrev current = null;
             int k = 0;
             while(temp!=null)
             {
@@ -169,8 +169,8 @@ namespace MyList
          }
         public void Clear()
         {
-            newMList temp = first;
-            newMList current=null;
+            mListPrev temp = first;
+            mListPrev current=null;
 
             while (temp!=null)
             {
@@ -186,7 +186,7 @@ namespace MyList
         public void Delete(int position)
         {
             var temp = first;
-            newMList current = null;
+            mListPrev current = null;
             int k = 0;
             int counter = 0;
             while (temp != null)
@@ -218,7 +218,7 @@ namespace MyList
         public void Insert (int position, int value)
         {
             var temp = first;
-            newMList current = null;
+            mListPrev current = null;
             int counter = 0;
             int k=0;
             while (temp!=null)
@@ -230,7 +230,7 @@ namespace MyList
                 }
                 else if (position==counter)
                 {
-                    current = new newMList(value);
+                    current = new mListPrev(value);
                     current.Next = temp;
                     current.Previous = temp.Previous;
                     temp.Previous = current;
@@ -241,7 +241,7 @@ namespace MyList
                 }
                 else if (counter == size-1  && position==size)
                 {
-                    current = new newMList(value);
+                    current = new mListPrev(value);
                     current.Next = null;
                     current.Previous = temp;
                     temp.Next = current;
@@ -257,8 +257,8 @@ namespace MyList
         public void AddToStart(int value)
         {
             var temp = first;
-            newMList current = null;
-            current = new newMList(value);
+            mListPrev current = null;
+            current = new mListPrev(value);
             current.Next = temp;
             first = current;
             temp.Previous=first;
@@ -308,21 +308,3 @@ namespace MyList
            
         }
        }
-
-
-/*
-
- 
-
-Node[0]: Data=1; Next= Node[1], Previous=null
-Node[1]: Data=2; Next= Node[2], Previous=Node[0]
-Node[2]: Data=3; Next= Node[3], Previous=Node[1]
-Node[3]: Data=4; Next= null,    Previous=Node[2]
-*/
-
-/*
-
-1. first=last= current;
-2. last.next=current; last.previous=last; last=current;
-3. last.next=current; last=current;
-*/

@@ -159,7 +159,7 @@ namespace MyListUniTest
         [Test]
         public void AddTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(5);
             int expected = 5;
             NUnit.Framework.Assert.AreEqual(expected, lst[0]);
@@ -167,7 +167,7 @@ namespace MyListUniTest
         [Test]
         public void CountTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(5);
             lst.Add(5);
             lst.Add(5);
@@ -177,7 +177,7 @@ namespace MyListUniTest
         [Test]
         public void RemoveTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(5);
             lst.Add(3);
             int expected = 1;
@@ -187,7 +187,7 @@ namespace MyListUniTest
         [Test]
         public void ClearTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(5);
             lst.Add(4);
             lst.Add(3);
@@ -200,7 +200,7 @@ namespace MyListUniTest
         [Test]
         public void DeleteTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(1);
             lst.Add(2);
             lst.Add(3);
@@ -213,7 +213,7 @@ namespace MyListUniTest
         [Test]
         public void InsertTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(1);
             lst.Add(2);
             lst.Add(3);//
@@ -226,7 +226,7 @@ namespace MyListUniTest
         [Test]
         public void AddToStartTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(1);
             lst.Add(2);
             lst.Add(3);
@@ -237,7 +237,7 @@ namespace MyListUniTest
         [Test]
         public void DelFirstTest()
         {
-            MyList.newMList lst = new MyList.newMList();
+            MyList.mListPrev lst = new MyList.mListPrev();
             lst.Add(1);
             lst.Add(2);
             lst.Add(3);

@@ -20,7 +20,7 @@ namespace MyList
 
             //Console.WriteLine(listt[0]);
 
-            newMList list = new newMList();
+            mListCircular list = new mListCircular();
 
             list.Add(3);
             list.Add(2);
@@ -28,9 +28,8 @@ namespace MyList
             list.Add(4);//идет на следующий
 
             //list[0] = 15;
+            list.Insert(4,1111);
 
-            var lst = list;
-          list.Reverse();
            // list.Clear();
            // list.Insert(4,10);
            // list.DelFirst();

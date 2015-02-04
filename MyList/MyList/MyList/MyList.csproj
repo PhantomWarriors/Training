@@ -46,7 +46,10 @@
   <ItemGroup>
     <Compile Include="iMList.cs" />
     <Compile Include="mList.cs" />
-    <Compile Include="newMList.cs" />
+    <Compile Include="mListCircular.cs" />
+    <Compile Include="mListiEndiStart.cs" />
+    <Compile Include="mListWithoutPrev.cs" />
+    <Compile Include="mListPrev.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
