@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-    class mListCircular
+   public class mListCircular : iMList
     {
          private int size=0;
         private mListCircular first;

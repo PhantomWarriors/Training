@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-  public  class mList
+    public class mList : iMList
     {
        private int[] list = new int[50];
        private int count = 0;
@@ -146,7 +146,6 @@ namespace MyList
                 }
             }
         }
-
       public void Reverse()
         {
             for (int i = 0; i < list.Length; i++)
@@ -162,10 +161,6 @@ namespace MyList
                 }
             }
         }
-
-
-
-
       public void DelFirst ()
       {
           count = count - 1;

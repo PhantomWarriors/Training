@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-    interface iMList
+    public interface iMList
     {
-        //public int this[int index]
-        //{
-        //    get;
-        //    set;
-        //}
-
+        int this[int index]
+        {
+            get;
+            set;
+        }
+        void Add(int value);
+        void Remove(int value);
+        void Clear();
+        int Count();
+        void Delete(int index);
+        void AddToStart(int value);
+        void Insert(int index, int value);
+        void Sort();
+        void Reverse();
+        void DelFirst();
     }
 }

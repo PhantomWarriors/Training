@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-   public class mListPrev
+    public class mListPrev : iMList
     {
         private int size=0;
         private mListPrev first;

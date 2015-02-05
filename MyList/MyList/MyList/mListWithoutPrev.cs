@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-    class mListWithoutPrev
+    public class mListWithoutPrev : iMList
     {
         private int size=0;
         private mListWithoutPrev first;

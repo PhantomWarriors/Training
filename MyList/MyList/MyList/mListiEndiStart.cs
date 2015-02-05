@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyList
 {
-    class mListiEndiStart
+    public class mListiEndiStart : iMList
     {
         private int[] list = new int[50];
         private int count = 0;
@@ -35,11 +35,10 @@ namespace MyList
             int del = 0;
             int k = 0;
 
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length-iStart; i++)
             {
                 if (list[iStart + i] == value && k == 0)
                 {
-                    list[iStart + i] = 0;
                     del = iStart + i;
                     k++;
                 }
@@ -51,7 +50,7 @@ namespace MyList
                 }
             }
 
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length - iStart; i++)
             {
                 list[iStart + i] = newList[i];
             }
@@ -61,7 +60,7 @@ namespace MyList
         }
         public void Clear()
         {
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length-iStart; i++)
             {
                 list[iStart+i] = 0;
             }
@@ -78,15 +77,15 @@ namespace MyList
             int[] newList = new int[list.Length];
             int j = 0;
 
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length-iStart; i++)
             {
-                if (iStart + i != index)
+                if (iStart + i != index + iStart)
                 {
                     newList[j] = list[iStart + i];
                     j++;
                 }
             }
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length - iStart; i++)
             {
                 list[iStart + i] = newList[i];
             }
@@ -134,9 +133,9 @@ namespace MyList
             int[] newList = new int[list.Length];
             int j = 0;
 
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length-iStart; i++)
             {
-                if (iStart + i != index)
+                if (iStart + i != index + iStart)
                 {
                     newList[i] = list[iStart + j];
                     j++;
@@ -149,7 +148,7 @@ namespace MyList
                 }
             }
 
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Length-iStart; i++)
             {
                 list[iStart + i] = newList[i];
             }
