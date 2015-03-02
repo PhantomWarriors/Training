@@ -41,9 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iTree.cs" />
+    <Compile Include="Pattern\IVisitor.cs" />
+    <Compile Include="Pattern\LeafCountVisitor.cs" />
+    <Compile Include="Pattern\SizeVisitor.cs" />
+    <Compile Include="Pattern\SortVisitor.cs" />
+    <Compile Include="Pattern\Tree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="TreeWithoutRef.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

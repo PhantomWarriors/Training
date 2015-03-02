@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BinaryTree
 {
-       public class Tree : iTree
+    public class TreeWithoutRef : iTree
     {
-        private Tree left, right, parent;
+        private TreeWithoutRef left, right, parent;
         private int data;
-        private Tree node;
+      //private Tree node;
         private int width;
         private List<int> sortR= new List<int>();
-        private List<Tree> nodes = new List<Tree>();
+
 
         static int count = 0;
         public int Data
@@ -21,38 +21,100 @@ namespace BinaryTree
             get { return data; }
             set { data = value; }
         }
-        public Tree Left
+        public TreeWithoutRef Left
         {
             get { return left; }
             set { left = value; }
         }
-        public Tree Right
+        public TreeWithoutRef Right
         {
             get { return right; }
             set { right = value; }
         }
-        public Tree Parent
+        public TreeWithoutRef Parent
         {
             get { return parent; }
             set { parent = value; }
         }
-        public Tree (int data)
+        public TreeWithoutRef (int data)
         {
             this.data = data;
             left = null;
             right = null;
             parent = null;
         }
-        public Tree()
+        public TreeWithoutRef()
         {
             left = null;
             right = null;
             parent = null;
         }
+
+        public int Size()
+        {
+            return count;
+        }
+        private void Sort(TreeWithoutRef node, List<int> bb)
+        {
+            if (bb.Count != count)
+            {
+                if (node.left == null && node.right == null)
+                {
+                    bb.Add(node.data);
+                    var current = node;
+                    if (bb.Count != count)
+                    {
+                        node.parent.left = null;
+                        Sort(current.parent, bb);
+                    }
+                }
+                else if (node.left == null && node.right != null)
+                {
+                    bb.Add(node.data);
+                    var current = node;
+                    if (node.parent != null)
+                    {
+                        node.parent.left = node.right;
+                    }
+                    else
+                    {
+                        current = node.right;
+                        current.parent = null;
+                        Sort(current, bb);
+                    }
+                    node.right.parent = node.parent;
+                    Sort(current.parent, bb);
+                }
+                else
+                {
+                    Sort(node.left, bb);
+                }
+            }
+        }
+        public List<int> Sort()
+        {
+            Sort(this, sortR);
+            return sortR;
+        }
+        public int LeafsCount(TreeWithoutRef data)
+        {
+            if (data.left != null && data.right != null)
+            {
+                return 2;
+            }
+            else if (data.left != null || data.right != null)
+            {
+                return 1;
+            }
+            else
+                return 0;
+        }
         
+
+
         public void Add (int data)
         {
-            var node = new Tree(data);
+            var node = new TreeWithoutRef(data);
             // Если первый пустой
             if (this.data == 0 && this.left == null && this.right == null && this.parent == null)
             {
@@ -92,9 +154,72 @@ namespace BinaryTree
             
 
         }
-        public Tree Find(int data)
+        public void Delete(int data)
         {
-            Tree node = new Tree(data);
+            if (data < this.data)
+            {
+                this.left.Delete(data);
+            }
+            if (data > this.data)
+            {
+                this.right.Delete(data);
+            }
+            if (data == this.data)
+            {
+                // Нету детей
+                if (this.right == null && this.left == null)
+                {
+                    if (this.parent.left.data == data)
+                        this.parent.left = null;
+                    else
+                        this.parent.right = null;
+                    count--;
+                }
+                // Нету детей с лева
+                else if (this.left == null && this.right != null)
+                {
+                    if (this.parent.left.data == data)
+                        this.parent.left = this.right;
+                    else
+                        this.parent.right = this.right;
+                    count--;
+                }
+                // Нету детей с права
+                else if (this.right == null && this.left != null)
+                {
+                    if (this.parent.left.data == data)
+                        this.parent.left = this.left;
+                    else
+                        this.parent.right = this.left;
+                    count--;
+                }
+                // есть оба дитя
+                else
+                {
+                    if (this.right.left == null)
+                    {
+                        this.left.parent = this.right;
+                        if (this.parent.left.data == data)
+                            this.parent.left = this.right;
+                        else
+                            this.parent.right = this.right;
+                        count--;
+                    }
+                    else
+                    {
+                        // this.FindMin(this.right, ref node);
+                        var node = this.FindMin(this);
+                        this.data = node.data;
+                        node.parent.left = null;
+                        node = null;
+                    }
+                }
+            }
+          
+        }
+        public TreeWithoutRef Find(int data)
+        {
+            TreeWithoutRef node = new TreeWithoutRef(data);
             if (this==null)
             {
                 // вернуть эксепшен
@@ -129,104 +254,18 @@ namespace BinaryTree
                     }
                 }
             }
-
-
             return node;
-
-        }
-        public int Size()
+        }     
+        private TreeWithoutRef FindMin(TreeWithoutRef node)
         {
-            return count;
-        }
-        
-        public void Delete(int data)
-        {
-            if (data<this.data)
+            TreeWithoutRef Current = node;
+            while (Current.Left != null)
             {
-                this.left.Delete(data);
+                Current = Current.Left;
             }
-            if (data>this.data)
-            {
-                this.right.Delete(data);
-            }
-            if (data==this.data)
-            {
-                // Нету детей
-                if(this.right==null && this.left==null)
-                {
-                    if (this.parent.left.data == data)
-                        this.parent.left = null;
-                    else
-                        this.parent.right = null;
-                    count--;
-                }
-                // Нету детей с лева
-                else if (this.left==null && this.right!=null)
-                {
-                    if (this.parent.left.data == data)
-                        this.parent.left = this.right;
-                    else
-                        this.parent.right = this.right;
-                    count--;
-                }
-                // Нету детей с права
-                else if (this.right == null && this.left != null)
-                {
-                    if (this.parent.left.data == data)
-                        this.parent.left = this.left;
-                    else
-                        this.parent.right = this.left;
-                    count--;
-                }
-                // есть оба дитя
-                else
-                {
-                    if (this.right.left==null)
-                    {
-                        this.left.parent = this.right;
-                        if (this.parent.left.data == data)
-                            this.parent.left = this.right;
-                        else
-                            this.parent.right = this.right;
-                    }
-                    else 
-                    {
-                        this.FindMin(this.right, ref node);
-                        this.data = node.data;
-                        node.parent.left = null;
-                        node = null;
-                    }
-                }
-            }
-            
-        }
-       private void FindMin(Tree data, ref Tree node)
-        {
-            var temp = data;
-            if (temp.left == null)
-            {
-                node = temp;
-            }
-            else
-            {
-                temp.FindMin(temp.left, ref node);
-            }
-
-        }
-       public int LeafsCount(Tree data)
-        {
-            if (data.left != null && data.right != null)
-            {
-                return 2;
-            }
-            else if (data.left != null || data.right != null)
-            {
-                return 1;
-            }
-            else
-                return 0;   
-        }
-       private int Height(Tree root)
+            return Current;
+        }      
+        private int Height(TreeWithoutRef root)
         {
            if (root==null)
             {
@@ -240,11 +279,11 @@ namespace BinaryTree
        {
            return this.Height(this);
        }
-       public int NodeSize(Tree node)
+       public int NodeSize(TreeWithoutRef node)
         {
             return Height(node);
         }
-       private int Width(Tree root, ref int width)
+       private int Width(TreeWithoutRef root, int width)/// Требует изменения, нужно придумать как убрать ref
        {
            if (root == null)
            {
@@ -254,60 +293,16 @@ namespace BinaryTree
            {
                width++;
            }
-           int left = 1 + Width(root.left, ref width);
-           int right = 1 + Width(root.right, ref width);
+           int left = 1 + Width(root.left,  width);
+           int right = 1 + Width(root.right,  width);
            return Math.Max(left, right);
        }
-       public int Width()
+       public int Width()/// Требует изменения, нужно придумать как убрать ref
        {
-           Width(this,ref width);
+           Width(this, width);
            return width;
        }
-       private void Sort(Tree node, ref List<int> bb)
-       {
-           if (bb.Count != count)
-           {
-               if (node.left == null && node.right == null)
-               {
-                   bb.Add(node.data);
-                   var current = node;
-                   if (bb.Count != count)
-                   {
-                       node.parent.left = null;
-                       Sort(current.parent, ref bb);
-                   }
-               }
-               else if (node.left == null && node.right != null)
-               {
-                   bb.Add(node.data);
-                   var current = node;
-                   if (node.parent != null)
-                   {
-                       node.parent.left = node.right;
-                   }
-                   else
-                   {
-                       current = node.right;
-                       current.parent = null;
-                       Sort(current, ref bb);
-                   }
-                   node.right.parent = node.parent;
-                   Sort(current.parent, ref bb);
-               }
-               else
-               {
-                   Sort(node.left,ref bb);
-               }
-           }
-       }
-       public List<int> Sort()
-       {
-           Sort(this, ref sortR);
-           return sortR;
-       }
-
-
-       private void Reverse(Tree node, ref List<int> bb)
+       private void Reverse(TreeWithoutRef node, List<int> bb)
        {
            if (bb.Count != count)
            {
@@ -318,7 +313,7 @@ namespace BinaryTree
                    if (bb.Count != count)
                    {
                        node.parent.right = null;
-                       Reverse(current.parent, ref bb);
+                       Reverse(current.parent, bb);
                    }
                }
                else if (node.left != null && node.right == null)
@@ -333,22 +328,26 @@ namespace BinaryTree
                    {
                        current = node.left;
                        current.parent = null;
-                       Reverse(current, ref bb);
+                       Reverse(current, bb);
                    }
                    node.left.parent = node.parent;
-                   Reverse(current.parent, ref bb);
+                   Reverse(current.parent, bb);
                }
                else
                {
-                   Reverse(node.right, ref bb);
+                   Reverse(node.right, bb);
                }
            }
        }
        public List<int> Reverse()
        {
-           Reverse(this, ref sortR);
+           Reverse(this, sortR);
            return sortR;
        }
+
+
+
+       
 
 
 
