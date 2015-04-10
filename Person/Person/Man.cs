@@ -11,6 +11,7 @@ namespace Person
         private string strength;
         private int age;
         private int stamina;
+        string line;
 
         public string Strength {get; set;}
 
@@ -25,8 +26,6 @@ namespace Person
             this.Age = age;
             this.Stamina = stam;
         }
-
-
         public Man()
         {
             this.Id = 0;
@@ -35,6 +34,9 @@ namespace Person
             this.Age = 0;
             this.Stamina = 0;
         }
-
+        public override string WriteCSV(Person per)
+        {
+            return line = Convert.ToString((per.GetType() + "," + per.Id + "," + per.Name + "," + ((Man)per).Strength + "," + ((Man)per).Age + "," + ((Man)per).Stamina));
+        }
     }
 }

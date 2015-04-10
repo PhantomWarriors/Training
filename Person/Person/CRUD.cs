@@ -14,8 +14,8 @@ namespace Person
         private SqlCommand myCommand = null;
         private SqlConnection connect = null;
         string queryString = null;
-       // SqlDataReader dr = null;
-        string connectionString = @"Data Source=(local)\SQLEXPRESS;Initial Catalog=tempdb;Integrated Security=True;";
+        SqlDataReader dr = null;
+        string connectionString = @"Data Source=(local)\SQLEXPRESS;Initial Catalog=master;Integrated Security=True; MultipleActiveResultSets=True";
         // Integrated Security  - Use "Windows authentication" to connect
 
         public void OpenConnection()
@@ -111,7 +111,7 @@ namespace Person
        }
         public Person Read(int id)
         {
-            SqlDataReader dr = null;
+            //SqlDataReader dr = null;
             Person pr = new Person();
           using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -148,6 +148,57 @@ namespace Person
             }
             return pr;
         }
+
+      public List<Person> ReadAll()
+        {
+            string queryString = "SELECT * FROM [Table]";
+           List<Person> pr = new List<Person>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //using (SqlCommand cmd = new SqlCommand("SELECT * FROM [Table]", connection))
+                //{
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    cmd.Connection.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    try
+                    {
+                        while (sdr.Read())
+                        {
+                            if (sdr.GetValue(3).ToString() == "")
+                            {
+                                Woman woman = new Woman();
+                                woman.Id = sdr.GetInt32(0);
+                                woman.Name = (string)sdr["Name"];
+                                woman.Beauty = sdr.GetInt32(5);
+                                woman.EyeColor = sdr.GetValue(6).ToString();
+                                woman.Smile = sdr.GetValue(7).ToString();
+                                pr.Add(woman);
+                            }
+                            else
+                            {
+                                Man man = new Man();
+                                man.Id = sdr.GetInt32(0);
+                                man.Name = (string)sdr["Name"];
+                                man.Strength = sdr.GetValue(2).ToString();
+                                man.Age = sdr.GetInt32(3);
+                                man.Stamina = sdr.GetInt32(4);
+                                pr.Add(man);
+                            }
+                        }
+                        sdr.Close(); 
+                        sdr.Dispose();
+                    }
+                catch (Exception ex)
+                    {
+                        var bb = ex.Message;
+                    }
+
+                }
+            
+            return pr;
+        }
+
+
 
     }
 }

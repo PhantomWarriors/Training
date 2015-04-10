@@ -11,6 +11,7 @@ namespace Person
         int beauty;
         string eyeColor;
         string smile;
+        string line;
 
         public int Beauty { get; set; }
         public string EyeColor { get; set; }
@@ -23,7 +24,6 @@ namespace Person
             this.EyeColor = color;
             this.Smile = sm;
         }
-
         public Woman()
         {
             this.Id = 0;
@@ -32,6 +32,9 @@ namespace Person
             this.EyeColor = null;
             this.Smile = null;
         }
-
+        public override string WriteCSV(Person per)
+        {
+            return line = Convert.ToString((per.GetType() + "," + per.Id + "," + per.Name + "," + ((Woman)per).Beauty + "," + ((Woman)per).EyeColor + "," + ((Woman)per).Smile));
+        }
     }
 }
