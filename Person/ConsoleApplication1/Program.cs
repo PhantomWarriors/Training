@@ -35,11 +35,22 @@ namespace ConsoleApplication1
                 listenThread.Start();
                 crud = new Person.CRUD();
                 people = new List<Person.Person>();
-                people = crud.ReadAll();
                 //people.Add(new Person.Man(1, "Igor", "Weak", 25, 20));
                 //people.Add(new Person.Woman(2, "Margo", 10, "Gree", "Sha"));
                 //people.Add(new Person.Man(3, "Seva", "Weak", 5, 2));
                 //people.Add(new Person.Woman(4, "Rita", 10, "Grey", "Fa"));
+
+                //people.Add(new Person.Man(5, "Igor", "Weak", 25, 20));
+                //people.Add(new Person.Woman(6, "Margo", 10, "Gree", "Sha"));
+                //people.Add(new Person.Man(7, "Seva", "Weak", 5, 2));
+                //people.Add(new Person.Woman(8, "Rita", 10, "Grey", "Fa"));
+
+
+                //people.Add(new Person.Man(10, "Igor", "Weak", 25, 20));
+                //people.Add(new Person.Woman(11, "Margo", 10, "Gree", "Sha"));
+                //people.Add(new Person.Man(12, "Seva", "Weak", 5, 2));
+                //people.Add(new Person.Woman(13, "Rita", 10, "Grey", "Fa"));
+
                 //crud.Create(people);
             }
             catch (IOException e)
@@ -119,6 +130,7 @@ namespace ConsoleApplication1
                 switch (strArr[0])
                 {
                     case"<All data> ":
+                        people = crud.ReadAll();
                         result = DataPreparation();
                         SendDataToClient(thisID);
                         break;
@@ -129,25 +141,25 @@ namespace ConsoleApplication1
                         break;
                     case"<Update> ":
 
-                        if (strArr[9]=="True")
+                        if (strArr[9] == "True" || strArr[9] == "Man")
                         {
                             var per = new Person.Man(Convert.ToInt32(strArr[1]), strArr[2], strArr[3], Convert.ToInt32(strArr[4]), Convert.ToInt32(strArr[5]));
                             crud.Update(Convert.ToInt32(strArr[1]), per);
                         }
-                        else if (strArr[9] == "False")
+                        else if (strArr[9] == "False" || strArr[9] == "Woman")
                         {
                             var per = new Person.Woman(Convert.ToInt32(strArr[1]), strArr[2], Convert.ToInt32(strArr[6]), strArr[7], strArr[8]);
                             crud.Update(Convert.ToInt32(strArr[1]), per);
                         }                      
                         break;
                     case"<Add> ":
-                        if (strArr[9] == "True")
+                        if (strArr[9] == "True" || strArr[9] == "Man")
                         {
                            var p = new List<Person.Person>();
                            p.Add(new Person.Man(Convert.ToInt32(strArr[1]), strArr[2], strArr[3], Convert.ToInt32(strArr[4]), Convert.ToInt32(strArr[5])));
                            crud.Create(p);
                         }
-                        else if (strArr[9] == "False" || strArr[9] == "")
+                        else if (strArr[9] == "False" || strArr[9] == "" || strArr[9] == "Woman")
                         {
                             var p = new List<Person.Person>();
                             p.Add(new Person.Woman(Convert.ToInt32(strArr[1]), strArr[2], Convert.ToInt32(strArr[6]), strArr[7], strArr[8]));
