@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD.cs" />
+    <Compile Include="DB.cs" />
     <Compile Include="iDS.cs" />
     <Compile Include="Man.cs" />
     <Compile Include="Person.cs" />

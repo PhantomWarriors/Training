@@ -36,5 +36,13 @@ namespace Person
         {
             return line = Convert.ToString((per.GetType() + "," + per.Id + "," + per.Name + "," + ((Woman)per).Beauty + "," + ((Woman)per).EyeColor + "," + ((Woman)per).Smile));
         }
+
+        public override string WriteToHtml(Person per)
+        {
+            string aa = "<td>" + "<img src=\"ok.png\" class=\"btn btn-success btn-xs\" onclick=\"editPerson(this)\" alt=\"" + per.Id + "\">" + "<img src=\"remove.png\" class=\"btn btn-danger btn-xs\" onclick=\"deletePerson(this)\" alt = \"" + per.Id + "\">" + "</td>";
+            return line = aa+ "<td>" + per.Id + "</td>" + "<td>" + per.Name + "</td>" + "</td>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + "</td>"+ "<td>" + ((Woman)per).Beauty + "</td>" + "<td>" + ((Woman)per).EyeColor + "</td>" + "<td>" + ((Woman)per).Smile + "</td>" + "<td>W</td>";
+        }
+
+
     }
 }

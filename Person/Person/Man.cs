@@ -38,5 +38,11 @@ namespace Person
         {
             return line = Convert.ToString((per.GetType() + "," + per.Id + "," + per.Name + "," + ((Man)per).Strength + "," + ((Man)per).Age + "," + ((Man)per).Stamina));
         }
+        public override string WriteToHtml(Person per)
+        {
+            string aa = "<td>" + "<img src=\"ok.png\" class=\"btn btn-success btn-xs\" onclick=\"editPerson(this)\" alt=\"" + per.Id + "\">" + "<img src=\"remove.png\" class=\"btn btn-danger btn-xs\" onclick=\"deletePerson(this)\" alt = \"" + per.Id + "\">" + "</td>"; 
+            return line = aa+ "<td>" + per.Id + "</td>" + "<td>" + per.Name + "</td>" + "<td>" + ((Man)per).Strength + "</td>" + "<td>" + ((Man)per).Age + "</td>" + "<td>" + ((Man)per).Stamina + "</td>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>M</td>";
+        }
+
     }
 }

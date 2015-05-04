@@ -15,6 +15,7 @@ namespace Person
         public int Id { set;  get; }
         public string Name { set; get; }
         public virtual string WriteCSV(Person per) { return line; }
+        public virtual string WriteToHtml(Person per) { return line; }
 
     }
 }
